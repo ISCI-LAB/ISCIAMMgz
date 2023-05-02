@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<sdf version='1.7'>
+  <world name='default'>
+
+  <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+  </include>
+
+  <model name='move_unit_cylinder'>
+    <pose>5 0.0 0 0 0</pose>
+    <scale>1 1 1</scale>
+    <link name='link'>      
+      <inertial>
+        <mass>100</mass>
+        <inertia>
+          <ixx>0.145833</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.145833</iyy>
+          <iyz>0</iyz>
+          <izz>0.125</izz>
+        </inertia>
+      </inertial>
+      
+      <self_collide>0</self_collide>
+      <enable_wind>0</enable_wind>
+      <kinematic>0</kinematic>
+      
+      <gravity>1</gravity>
+      <visual name='visual'>
+        <geometry>
+          <cylinder>
+            <radius>0.25</radius>
+            <length>1.8</length>
+          </cylinder>
+        </geometry>
+
+        <material>
+          <script>
+            <name>Gazebo/Green</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <geometry>
+          <cylinder>
+            <radius>0.25</radius>
+            <length>1.8</length>
+          </cylinder>
+        </geometry>
+
+        <surface>
+          <friction>
+            <ode>
+              <mu>0</mu>
+              <mu2>0</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+          </friction>        
+        </surface>
+      </collision>
+    </link>
+    <plugin name="plannar_mover_plugin" filename="libplannar_obs_plugin.so"/>
+  </model>
+  
+  </world>
+</sdf>
